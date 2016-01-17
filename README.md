@@ -33,7 +33,7 @@ Todo
 
 Contributing
 ---
-Write code that works on a POSIX compatible, avoid bashisms.
+Write code that works on a POSIX compatible shell, avoid bashisms.
 
 * http://mywiki.wooledge.org/Bashism
 * https://wiki.ubuntu.com/DashAsBinSh
