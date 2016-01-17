@@ -33,6 +33,7 @@ curl https://raw.githubusercontent.com/mmckinst/puppet-bootstrap/master/install.
 
 Todo
 ---
+* https://github.com/test-kitchen/test-kitchen/issues/917 so 23repo can have testing
 * Allow installation of specific versions of puppet 4.x / [puppet-agent](https://docs.puppetlabs.com/puppet/latest/reference/about_agent.html) package.
 * Allow installation of specific versions of puppet 3.x packages from puppet's
   yum and apt repos.
