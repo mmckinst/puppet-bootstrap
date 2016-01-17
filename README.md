@@ -20,7 +20,7 @@ repo for the following operating systems:
 Usage
 ---
 ```
-curl https://raw.githubusercontent.com/mmckinst/puppet-bootstrap/install.sh | sh
+curl https://raw.githubusercontent.com/mmckinst/puppet-bootstrap/master/install.sh | sudo sh
 ```
 
 Todo
