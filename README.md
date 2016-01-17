@@ -1,33 +1,39 @@
 [![Travis](https://img.shields.io/travis/mmckinst/puppet-bootstrap.svg)](https://travis-ci.org/mmckinst/puppet-bootstrap)
 
-This is an installation script for puppet that will install that latest version
-of the
-[puppet-agent](https://docs.puppetlabs.com/puppet/latest/reference/about_agent.html)
-package from the
+This script will install the puppet agent on a server. It defaults to puppet 4.x
+from the
 [puppet collections](https://puppetlabs.com/blog/welcome-puppet-collections)
-repo for the following operating systems:
+repo.
 
-* CentOS 5
-* CentOS 6
-* CentOS 7
-* Ubuntu 12.04
-* Ubuntu 14.04
-* Ubuntu 15.04
-* Debian 6
-* Debian 7
-* Debian 8
-* Fedora 22
+| OS           | PC1 (4.x) | 3.x     |
+|:-------------|:---------:|:-------:|
+| CentOS 5     | Yes       | Yes     |
+| CentOS 6     | Yes       | Yes     |
+| CentOS 7     | Yes       | Yes     |
+| Ubuntu 12.04 | Yes       | Yes     |
+| Ubuntu 14.04 | Yes       | Yes     |
+| Ubuntu 15.04 | Yes       | **No**  |
+| Debian 6     | Yes       | Yes     |
+| Debian 7     | Yes       | Yes     |
+| Debian 8     | Yes       | Yes     |
+| Fedora 22    | Yes       | **No**  |
 
 
 Usage
 ---
+Install puppet 4.x from PC1:
 ```
 curl https://raw.githubusercontent.com/mmckinst/puppet-bootstrap/master/install.sh | sudo sh
 ```
 
+Install puppet 3.x from puppet's repo:
+```
+curl https://raw.githubusercontent.com/mmckinst/puppet-bootstrap/master/install.sh | sudo sh -- -t 23repo
+```
+
 Todo
 ---
-* Allow installation of specific versions of the puppet-agent package.
+* Allow installation of specific versions of puppet 4.x / [puppet-agent](https://docs.puppetlabs.com/puppet/latest/reference/about_agent.html) package.
 * Allow installation of specific versions of puppet 3.x packages from puppet's
   yum and apt repos.
 * Allow installation of specific versions of puppet as a gem.
