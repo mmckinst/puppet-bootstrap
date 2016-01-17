@@ -1,0 +1,23 @@
+---
+driver:
+  name: docker
+  use_sudo: false
+  provision_command: curl -L https://www.opscode.com/chef/install.sh | sh
+
+provisioner:
+  name: shell
+  script: install.sh
+
+platforms:
+  - name: centos-5
+  - name: centos-6
+  - name: centos-7
+#  - name: ubuntu-12.04
+  - name: ubuntu-14.04
+  - name: ubuntu-15.04
+  - name: debian-7
+  - name: debian-8
+  - name: fedora-22
+
+suites:
+  - name: puppet-agent
