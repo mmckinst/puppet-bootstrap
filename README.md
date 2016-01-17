@@ -10,8 +10,10 @@ repo for the following operating systems:
 * CentOS 5
 * CentOS 6
 * CentOS 7
+* Ubuntu 12.04
 * Ubuntu 14.04
 * Ubuntu 15.04
+* Debian 6
 * Debian 7
 * Debian 8
 * Fedora 22

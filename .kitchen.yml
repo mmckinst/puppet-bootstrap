@@ -8,13 +8,17 @@ provisioner:
   name: shell
   script: install.sh
 
+# ubuntu-12.04 and debian-6 images won't work on a Centos or Fedora host that
+# has selinux enabled due to a bug in their libselinux packages:
+# https://bugs.launchpad.net/ubuntu/+source/libselinux/+bug/1424795
 platforms:
   - name: centos-5
   - name: centos-6
   - name: centos-7
-#  - name: ubuntu-12.04
+  - name: ubuntu-12.04
   - name: ubuntu-14.04
   - name: ubuntu-15.04
+  - name: debian-6
   - name: debian-7
   - name: debian-8
   - name: fedora-22
