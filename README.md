@@ -5,23 +5,23 @@ from the
 [puppet collections](https://puppetlabs.com/blog/welcome-puppet-collections)
 repo.
 
-| OS           | PC1 (4.x) | 3.x     |
-|:-------------|:---------:|:-------:|
-| CentOS 5     | Yes       | Yes     |
-| CentOS 6     | Yes       | Yes     |
-| CentOS 7     | Yes       | Yes     |
-| Ubuntu 12.04 | Yes       | Yes     |
-| Ubuntu 14.04 | Yes       | Yes     |
-| Ubuntu 15.04 | Yes       | **No**  |
-| Debian 6     | Yes       | Yes     |
-| Debian 7     | Yes       | Yes     |
-| Debian 8     | Yes       | Yes     |
-| Fedora 22    | Yes       | **No**  |
+| OS           | 4.x | 3.x     |
+|:-------------|:---:|:-------:|
+| CentOS 5     | Yes | Yes     |
+| CentOS 6     | Yes | Yes     |
+| CentOS 7     | Yes | Yes     |
+| Ubuntu 12.04 | Yes | Yes     |
+| Ubuntu 14.04 | Yes | Yes     |
+| Ubuntu 15.04 | Yes | **No**  |
+| Debian 6     | Yes | Yes     |
+| Debian 7     | Yes | Yes     |
+| Debian 8     | Yes | Yes     |
+| Fedora 22    | Yes | **No**  |
 
 
 Usage
 ---
-Install puppet 4.x from PC1:
+Install puppet 4.x from [puppet collections](https://puppetlabs.com/blog/welcome-puppet-collections):
 ```
 curl https://raw.githubusercontent.com/mmckinst/puppet-bootstrap/master/install.sh | sudo sh
 ```
