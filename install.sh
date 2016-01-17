@@ -22,58 +22,83 @@ redhat_family_install_deps() {
     yum -y install curl
 }
 
-redhat_family_install_puppet() {
-    yum -y --nogpgcheck install /tmp/puppet.rpm
-    rm /tmp/puppet.rpm
-
-    yum -y install puppet-agent
-    rm -f /tmp/puppet.rpm
+redhat_family_install_puppet_repo() {
+    yum -y --nogpgcheck install /tmp/puppet-repo.rpm
+    rm -f /tmp/puppet-repo.rpm
 }
 
 debian_family_install_deps() {
     apt-get install -y curl
 }
 
-debian_family_install_puppet() {
-    sudo dpkg -i /tmp/puppet.deb
-    rm /tmp/puppet.deb
+debian_family_install_puppet_repo() {
+    sudo dpkg -i /tmp/puppet-repo.deb
     apt-get update
-    apt-get install -y puppet-agent
+    rm -f /tmp/puppet-repo.deb
 }
+
+
+TYPE='pc1'
+OS=''
+OS_CODENAME=''
+OS_MAJOR_VERSION=''
+
+while getopts t: opt; do
+    case $opt in
+	t) TYPE="$OPTARG";;
+	\?)
+	    echo "Usage: $0 [-t install_type]"
+	    exit 1
+	;;
+    esac
+done
+
 
 if lsb_release > /dev/null 2>&1; then
     OS=`lsb_release -si | tr 'A-Z' 'a-z'`
     VERSION=`lsb_release -sr`
-    MAJOR_VERSION=`echo $VERSION | cut -d. -f1`
-    CODENAME=`lsb_release -sc`
+    OS_MAJOR_VERSION=`echo $VERSION | cut -d. -f1`
+    OS_CODENAME=`lsb_release -sc`
+elif [ -f /etc/fedora-release ]; then
+    OS='fedora'
+    RELEASE_RPM=`rpm -qf /etc/fedora-release`
+    OS_MAJOR_VERSION=`rpm -q --qf '%{VERSION}' $RELEASE_RPM`
+elif [ -f /etc/redhat-release ]; then
+    OS='el'
+    RELEASE_RPM=`rpm -qf /etc/redhat-release`
+    OS_MAJOR_VERSION=`rpm -q --qf '%{VERSION}' $RELEASE_RPM`
+else
+    echo "unknown operating system" >&2
+    exit 1
+fi
+
+
+if  expr "x$TYPE" : 'xpc' > /dev/null; then
     if [ "$OS" = 'debian' ] || [ "$OS" = 'ubuntu' ]; then
 	debian_family_install_deps
-	curl -DL "http://apt.puppetlabs.com/puppetlabs-release-pc1-${CODENAME}.deb" > /tmp/puppet.deb
-	debian_family_install_puppet
-    elif [ "$OS" = 'centos' ] || [ "$OS" = 'fedora' ]; then
+	curl -DL "http://apt.puppetlabs.com/puppetlabs-release-${TYPE}-${OS_CODENAME}.deb" > /tmp/puppet-repo.deb
+	debian_family_install_puppet_repo
+	apt-get install -y puppet-agent
+    elif [ "$OS" = 'el' ] || [ "$OS" = 'fedora' ]; then
 	redhat_family_install_deps
-	if [ "$OS" = 'centos' ]; then
-	    # wget -O /tmp/puppet.rpm "http://yum.puppetlabs.com/puppetlabs-release-pc1-el-${MAJOR_VERSION}.noarch.rpm"
-	    curl -DL "http://yum.puppetlabs.com/puppetlabs-release-pc1-el-${MAJOR_VERSION}.noarch.rpm" > /tmp/puppet.rpm
-	elif [ "$OS" = 'fedora' ]; then
-	    # wget -O /tmp/puppet.rpm "http://yum.puppetlabs.com/puppetlabs-release-pc1-fedora-${MAJOR_VERSION}.noarch.rpm"
-	    curl -DL  "http://yum.puppetlabs.com/puppetlabs-release-pc1-fedora-${MAJOR_VERSION}.noarch.rpm" > /tmp/puppet.rpm
-	fi
-    
-	redhat_family_install_puppet
+	curl -DL "http://yum.puppetlabs.com/puppetlabs-release-${TYPE}-${OS}-${OS_MAJOR_VERSION}.noarch.rpm" > /tmp/puppet-repo.rpm
+	redhat_family_install_puppet_repo
+	yum -y install puppet-agent
     fi
-elif [ -f /etc/fedora-release ]; then
-    redhat_family_install_deps
-    RELEASE_RPM=`rpm -qf /etc/fedora-release`
-    RELEASE=`rpm -q --qf '%{VERSION}' $RELEASE_RPM`
-    curl -DL  "http://yum.puppetlabs.com/puppetlabs-release-pc1-fedora-${RELEASE}.noarch.rpm" > /tmp/puppet.rpm
+elif [ "$TYPE" = '23repo' ]; then
+    if [ "$OS" = 'debian' ] || [ "$OS" = 'ubuntu' ]; then
+	debian_family_install_deps
+	curl -DL "http://apt.puppetlabs.com/puppetlabs-release-${OS_CODENAME}.deb" > /tmp/puppet-repo.deb
+	debian_family_install_puppet_repo
+	apt-get install -y puppet
+    elif [ "$OS" = 'el' ] || [ "$OS" = 'fedora' ]; then
+	redhat_family_install_deps
+	curl -DL "http://yum.puppetlabs.com/puppetlabs-release-${OS}-${OS_MAJOR_VERSION}.noarch.rpm" > /tmp/puppet-repo.rpm
+	redhat_family_install_puppet_repo
+	yum -y install puppet
 
-    redhat_family_install_puppet
-elif [ -f /etc/redhat-release ]; then
-    redhat_family_install_deps
-    RELEASE_RPM=`rpm -qf /etc/redhat-release`
-    RELEASE=`rpm -q --qf '%{VERSION}' $RELEASE_RPM`
-    curl -DL "http://yum.puppetlabs.com/puppetlabs-release-pc1-el-${RELEASE}.noarch.rpm" > /tmp/puppet.rpm
- 
-    redhat_family_install_puppet
+    fi
+else
+    echo "unknown puppet installation type $TYPE" >&2
+    exit 1
 fi

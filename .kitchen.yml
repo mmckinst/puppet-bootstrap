@@ -24,4 +24,8 @@ platforms:
   - name: fedora-22
 
 suites:
-  - name: puppet-agent
+  - name: pc1
+#   - name: 23repo
+#     excludes:
+#       - ubuntu-15.04
+#       - fedora-22
