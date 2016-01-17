@@ -1,3 +1,5 @@
+[![Travis](https://img.shields.io/travis/mmckinst/puppet-bootstrap.svg)](https://travis-ci.org/mmckinst/puppet-bootstrap)
+
 This is an installation script for puppet that will install that latest version
 of the
 [puppet-agent](https://docs.puppetlabs.com/puppet/latest/reference/about_agent.html)

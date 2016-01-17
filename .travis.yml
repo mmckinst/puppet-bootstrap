@@ -1,0 +1,21 @@
+---
+sudo: required
+
+language: ruby
+
+services:
+  - docker
+
+addons:
+  apt:
+    packages:
+      - devscripts
+
+script:
+  - checkbashisms install.sh
+  - bundle exec kitchen verify
+
+notifications:
+  email:
+    on_success: never
+    on_failure: always
