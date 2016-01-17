@@ -5,6 +5,21 @@ from the
 [puppet collections](https://puppetlabs.com/blog/welcome-puppet-collections)
 repo.
 
+
+Usage
+---
+Install puppet 4.x from [puppet collections](https://puppetlabs.com/blog/welcome-puppet-collections):
+```
+curl https://raw.githubusercontent.com/mmckinst/puppet-bootstrap/master/install.sh | sudo sh
+```
+
+Install puppet 3.x from puppet's repo:
+```
+curl https://raw.githubusercontent.com/mmckinst/puppet-bootstrap/master/install.sh | sudo sh -- -t 23repo
+```
+
+Supported Operating Systems
+---
 | OS           | 4.x | 3.x     |
 |:-------------|:---:|:-------:|
 | CentOS 5     | Yes | Yes     |
@@ -18,18 +33,6 @@ repo.
 | Debian 8     | Yes | Yes     |
 | Fedora 22    | Yes | **No**  |
 
-
-Usage
----
-Install puppet 4.x from [puppet collections](https://puppetlabs.com/blog/welcome-puppet-collections):
-```
-curl https://raw.githubusercontent.com/mmckinst/puppet-bootstrap/master/install.sh | sudo sh
-```
-
-Install puppet 3.x from puppet's repo:
-```
-curl https://raw.githubusercontent.com/mmckinst/puppet-bootstrap/master/install.sh | sudo sh -- -t 23repo
-```
 
 Todo
 ---
