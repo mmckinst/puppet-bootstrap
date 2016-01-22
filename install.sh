@@ -19,7 +19,9 @@ set -e
 set -u
 
 redhat_family_install_deps() {
-    yum -y install curl
+    if ! command -v curl; then
+	yum -y install curl
+    fi
 }
 
 redhat_family_install_puppet_repo() {
@@ -28,7 +30,9 @@ redhat_family_install_puppet_repo() {
 }
 
 debian_family_install_deps() {
-    apt-get install -y curl
+    if ! command -v curl; then
+	apt-get install -y curl
+    fi
 }
 
 debian_family_install_puppet_repo() {

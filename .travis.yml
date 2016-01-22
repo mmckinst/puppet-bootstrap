@@ -11,9 +11,21 @@ addons:
     packages:
       - devscripts
 
+env:
+  - TEST_SUITE=centos-5
+  - TEST_SUITE=centos-6
+  - TEST_SUITE=centos-7
+  - TEST_SUITE=ubuntu-1204
+  - TEST_SUITE=ubuntu-1404
+  - TEST_SUITE=ubuntu-1504
+  - TEST_SUITE=debian-6
+  - TEST_SUITE=debian-7
+  - TEST_SUITE=debian-8
+  - TEST_SUITE=fedora-22
+
 script:
   - checkbashisms install.sh
-  - bundle exec kitchen verify
+  - bundle exec kitchen test $TEST_SUITE
 
 notifications:
   email:
