@@ -41,6 +41,13 @@ debian_family_install_puppet_repo() {
     rm -f /tmp/puppet-repo.deb
 }
 
+download_url() {
+    curl -D /tmp/curl_headers -L "$1" > "$2"
+    if grep -q '404 Not Found' /tmp/curl_headers; then
+	echo "could not download $1"
+	exit 1
+    fi
+}
 
 TYPE='pc1'
 OS=''
@@ -80,24 +87,24 @@ fi
 if  expr "x$TYPE" : 'xpc' > /dev/null; then
     if [ "$OS" = 'debian' ] || [ "$OS" = 'ubuntu' ]; then
 	debian_family_install_deps
-	curl -DL "http://apt.puppetlabs.com/puppetlabs-release-${TYPE}-${OS_CODENAME}.deb" > /tmp/puppet-repo.deb
+	download_url "http://apt.puppetlabs.com/puppetlabs-release-${TYPE}-${OS_CODENAME}.deb" /tmp/puppet-repo.deb
 	debian_family_install_puppet_repo
 	apt-get install -y puppet-agent
     elif [ "$OS" = 'el' ] || [ "$OS" = 'fedora' ]; then
 	redhat_family_install_deps
-	curl -DL "http://yum.puppetlabs.com/puppetlabs-release-${TYPE}-${OS}-${OS_MAJOR_VERSION}.noarch.rpm" > /tmp/puppet-repo.rpm
+	download_url "http://yum.puppetlabs.com/puppetlabs-release-${TYPE}-${OS}-${OS_MAJOR_VERSION}.noarch.rpm" /tmp/puppet-repo.rpm
 	redhat_family_install_puppet_repo
 	yum -y install puppet-agent
     fi
 elif [ "$TYPE" = '23repo' ]; then
     if [ "$OS" = 'debian' ] || [ "$OS" = 'ubuntu' ]; then
 	debian_family_install_deps
-	curl -DL "http://apt.puppetlabs.com/puppetlabs-release-${OS_CODENAME}.deb" > /tmp/puppet-repo.deb
+	download_url "http://apt.puppetlabs.com/puppetlabs-release-${OS_CODENAME}.deb" /tmp/puppet-repo.deb
 	debian_family_install_puppet_repo
 	apt-get install -y puppet
     elif [ "$OS" = 'el' ] || [ "$OS" = 'fedora' ]; then
 	redhat_family_install_deps
-	curl -DL "http://yum.puppetlabs.com/puppetlabs-release-${OS}-${OS_MAJOR_VERSION}.noarch.rpm" > /tmp/puppet-repo.rpm
+	download_url "http://yum.puppetlabs.com/puppetlabs-release-${OS}-${OS_MAJOR_VERSION}.noarch.rpm" /tmp/puppet-repo.rpm
 	redhat_family_install_puppet_repo
 	yum -y install puppet
 
