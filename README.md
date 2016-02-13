@@ -47,7 +47,6 @@ Supported Operating Systems
 
 Todo
 ---
-* https://github.com/test-kitchen/test-kitchen/issues/917 so 23repo can have testing
 * Allow installation of specific versions of puppet as a gem.
 
 

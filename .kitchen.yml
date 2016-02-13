@@ -24,8 +24,22 @@ platforms:
   - name: fedora-22
 
 suites:
-  - name: pc1
-#   - name: 23repo
-#     excludes:
-#       - ubuntu-15.04
-#       - fedora-22
+  - name: default
+  - name: puppet4
+    provisioner:
+      arguments: '-v 4'
+  - name: puppet42
+    provisioner:
+      arguments: '-v 4.2'
+  - name: puppet3
+    provisioner:
+      arguments: '-v 3'
+    excludes:
+      - ubuntu-15.04
+      - fedora-22
+  - name: puppet37
+    provisioner:
+      arguments: '-v 3.7'
+    excludes:
+      - ubuntu-15.04
+      - fedora-22
