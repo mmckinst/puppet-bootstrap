@@ -8,15 +8,26 @@ repo.
 
 Usage
 ---
-Install puppet 4.x from [puppet collections](https://puppetlabs.com/blog/welcome-puppet-collections):
+Install the latest in the puppet 4.x line:
 ```
 curl https://raw.githubusercontent.com/mmckinst/puppet-bootstrap/master/install.sh | sudo sh
 ```
 
-Install puppet 3.x from puppet's repo:
+Install the latest in the puppet 4.2.x line:
 ```
-curl https://raw.githubusercontent.com/mmckinst/puppet-bootstrap/master/install.sh | sudo sh -- -t 23repo
+curl https://raw.githubusercontent.com/mmckinst/puppet-bootstrap/master/install.sh | sudo sh -- -v 4.2
 ```
+
+Install the latest in the puppet 3.x line:
+```
+curl https://raw.githubusercontent.com/mmckinst/puppet-bootstrap/master/install.sh | sudo sh -- -v 3
+```
+
+Install the latest in the puppet 3.6.x line:
+```
+curl https://raw.githubusercontent.com/mmckinst/puppet-bootstrap/master/install.sh | sudo sh -- -v 3.6
+```
+
 
 Supported Operating Systems
 ---
@@ -37,9 +48,6 @@ Supported Operating Systems
 Todo
 ---
 * https://github.com/test-kitchen/test-kitchen/issues/917 so 23repo can have testing
-* Allow installation of specific versions of puppet 4.x / [puppet-agent](https://docs.puppetlabs.com/puppet/latest/reference/about_agent.html) package.
-* Allow installation of specific versions of puppet 3.x packages from puppet's
-  yum and apt repos.
 * Allow installation of specific versions of puppet as a gem.
 
 
