@@ -42,7 +42,6 @@ Supported Operating Systems
 | Debian 6     | Yes | Yes     |
 | Debian 7     | Yes | Yes     |
 | Debian 8     | Yes | Yes     |
-| Fedora 22    | Yes | **No**  |
 
 
 Todo

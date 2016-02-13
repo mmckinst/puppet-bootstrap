@@ -21,7 +21,6 @@ platforms:
   - name: debian-6
   - name: debian-7
   - name: debian-8
-  - name: fedora-22
 
 suites:
   - name: default
@@ -36,10 +35,8 @@ suites:
       arguments: '-v 3'
     excludes:
       - ubuntu-15.04
-      - fedora-22
   - name: puppet37
     provisioner:
       arguments: '-v 3.7'
     excludes:
       - ubuntu-15.04
-      - fedora-22
