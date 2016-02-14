@@ -88,9 +88,9 @@ determine_puppet_repo_and_package_version() {
 	    PUPPET_REPO='pc1';
 	    PUPPET_PACKAGE_NAME='puppet-agent';
 	    ;;
-	3*|2*)
+	3*)
 	    PUPPET_PACKAGE_VERSION="`echo $PUPPET_VERSION | cut -d. -f1,2`.*"
-	    PUPPET_REPO='23repo';
+	    PUPPET_REPO='3repo';
 	    PUPPET_PACKAGE_NAME='puppet';
 	    ;;
     esac
@@ -148,7 +148,7 @@ if  expr "x$PUPPET_REPO" : 'xpc' > /dev/null; then
 	redhat_family_install_puppet_repo
 	yum -y install $PUPPET_PACKAGE_AND_VERSION
     fi
-elif [ "$PUPPET_REPO" = '23repo' ]; then
+elif [ "$PUPPET_REPO" = '3repo' ]; then
     if [ "$OS" = 'debian' ] || [ "$OS" = 'ubuntu' ]; then
 	debian_family_install_deps
 	download_url "http://apt.puppetlabs.com/puppetlabs-release-${OS_CODENAME}.deb" /tmp/puppet-repo.deb
