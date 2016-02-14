@@ -56,6 +56,14 @@ Write code that works on a POSIX compatible shell, avoid bashisms.
 * http://mywiki.wooledge.org/Bashism
 * https://wiki.ubuntu.com/DashAsBinSh
 
+Testing is done with kitchen and docker. To run the tests locally, you need to
+have a working docker installation.
+
+```
+bundle install --path vendor/bundle
+bundle exec kitchen test
+```
+
 
 License
 ---
