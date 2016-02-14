@@ -39,6 +39,7 @@ Supported Operating Systems
 | Ubuntu 12.04 | Yes | Yes     |
 | Ubuntu 14.04 | Yes | Yes     |
 | Ubuntu 15.04 | Yes | **No**  |
+| Ubuntu 15.10 | Yes | **No**  |
 | Debian 6     | Yes | Yes     |
 | Debian 7     | Yes | Yes     |
 | Debian 8     | Yes | Yes     |

@@ -18,6 +18,7 @@ platforms:
   - name: ubuntu-12.04
   - name: ubuntu-14.04
   - name: ubuntu-15.04
+  - name: ubuntu-15.10
   - name: debian-6
   - name: debian-7
   - name: debian-8
@@ -30,13 +31,17 @@ suites:
   - name: puppet42
     provisioner:
       arguments: '-v 4.2'
+    excludes:
+      - ubuntu-15.10
   - name: puppet3
     provisioner:
       arguments: '-v 3'
     excludes:
       - ubuntu-15.04
+      - ubuntu-15.10
   - name: puppet37
     provisioner:
       arguments: '-v 3.7'
     excludes:
       - ubuntu-15.04
+      - ubuntu-15.10
