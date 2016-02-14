@@ -8,15 +8,26 @@ repo.
 
 Usage
 ---
-Install puppet 4.x from [puppet collections](https://puppetlabs.com/blog/welcome-puppet-collections):
+Install the latest in the puppet 4.x line:
 ```
 curl https://raw.githubusercontent.com/mmckinst/puppet-bootstrap/master/install.sh | sudo sh
 ```
 
-Install puppet 3.x from puppet's repo:
+Install the latest in the puppet 4.2.x line:
 ```
-curl https://raw.githubusercontent.com/mmckinst/puppet-bootstrap/master/install.sh | sudo sh -- -t 23repo
+curl https://raw.githubusercontent.com/mmckinst/puppet-bootstrap/master/install.sh | sudo sh -- -v 4.2
 ```
+
+Install the latest in the puppet 3.x line:
+```
+curl https://raw.githubusercontent.com/mmckinst/puppet-bootstrap/master/install.sh | sudo sh -- -v 3
+```
+
+Install the latest in the puppet 3.6.x line:
+```
+curl https://raw.githubusercontent.com/mmckinst/puppet-bootstrap/master/install.sh | sudo sh -- -v 3.6
+```
+
 
 Supported Operating Systems
 ---
@@ -28,18 +39,14 @@ Supported Operating Systems
 | Ubuntu 12.04 | Yes | Yes     |
 | Ubuntu 14.04 | Yes | Yes     |
 | Ubuntu 15.04 | Yes | **No**  |
+| Ubuntu 15.10 | Yes | **No**  |
 | Debian 6     | Yes | Yes     |
 | Debian 7     | Yes | Yes     |
 | Debian 8     | Yes | Yes     |
-| Fedora 22    | Yes | **No**  |
 
 
 Todo
 ---
-* https://github.com/test-kitchen/test-kitchen/issues/917 so 23repo can have testing
-* Allow installation of specific versions of puppet 4.x / [puppet-agent](https://docs.puppetlabs.com/puppet/latest/reference/about_agent.html) package.
-* Allow installation of specific versions of puppet 3.x packages from puppet's
-  yum and apt repos.
 * Allow installation of specific versions of puppet as a gem.
 
 
@@ -49,6 +56,14 @@ Write code that works on a POSIX compatible shell, avoid bashisms.
 
 * http://mywiki.wooledge.org/Bashism
 * https://wiki.ubuntu.com/DashAsBinSh
+
+Testing is done with kitchen and docker. To run the tests locally, you need to
+have a working docker installation.
+
+```
+bundle install --path vendor/bundle
+bundle exec kitchen test
+```
 
 
 License

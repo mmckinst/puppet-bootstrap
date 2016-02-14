@@ -12,16 +12,9 @@ addons:
       - devscripts
 
 env:
-  - TEST_SUITE=centos-5
-  - TEST_SUITE=centos-6
-  - TEST_SUITE=centos-7
-  - TEST_SUITE=ubuntu-1204
-  - TEST_SUITE=ubuntu-1404
-  - TEST_SUITE=ubuntu-1504
-  - TEST_SUITE=debian-6
-  - TEST_SUITE=debian-7
-  - TEST_SUITE=debian-8
-  - TEST_SUITE=fedora-22
+  - TEST_SUITE=centos
+  - TEST_SUITE=ubuntu
+  - TEST_SUITE=debian
 
 script:
   - checkbashisms install.sh
