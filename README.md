@@ -48,7 +48,7 @@ Supported Operating Systems
 Todo
 ---
 * Allow installation of specific versions of puppet as a gem.
-
+* Allow installation of puppet from whatever is in the distro's repo.
 
 Contributing
 ---
